@@ -4,6 +4,7 @@ from dao.sample_a_dao import SampleADao
 import time
 from config.helpers import delete_file, recover_image, create_new_default_image
 from sample import db, app
+from view import session_view
 
 sample_a_dao = SampleADao(db)
 
@@ -33,9 +34,9 @@ def create_sample_a():
 @app.route('/editSampleA/<int:id_field_a>')
 def edit_sample_a(id_field_a):
     if 'logged_user' not in session or session['logged_user'] is None:
-        return redirect(url_for('login', next=url_for('edit_sample_a', id_sample_a=id_sample_a)))
-    sample_a = sample_a_dao.search_by_id_sample_a(id_sample_a)
-    image_name = recover_image(id_sample_a)
+        return redirect(url_for('login', next=url_for('edit_sample_a', id_field_a=id_field_a)))
+    sample_a = sample_a_dao.search_by_id_sample_a(id_field_a)
+    image_name = recover_image(id_field_a)
     return render_template('edit_sample_a.html', title='Editing Sample A', sample_a=sample_a
                            , image_name=image_name or 'default_pic.jpg')
 
