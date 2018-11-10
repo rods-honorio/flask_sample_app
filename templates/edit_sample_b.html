@@ -1,0 +1,20 @@
+{% extends "template.html" %}
+{% block content %}
+      <form action="{{ url_for('refresh_sample_b') }}" method="post">
+        <input type="hidden" name="id_field_b" value="{{ sample_b.id_field_b }}">
+        <fieldset>
+          <div class="form-group">
+            <label for="id_filed_a">Text Field</label>
+            <input type="text" id="id_filed_a" name="id_filed_a" class="form-control"
+                   value="{{ sample_b.id_filed_a}}">
+          </div>
+          <div class="form-group">
+            <label for="text_filed_b">Text Field</label>
+            <input type="text" id="text_filed_b" name="text_filed_b" class="form-control"
+                   value="{{ sample_b.text_filed_b}}">
+          </div>
+          <button type="submit" class="btn btn-primary btn-save">Save</button>
+          <a class="btn btn-danger" href="{{ url_for('index') }}">Back</a>
+        </fieldset>
+      </form>
+{% endblock %}

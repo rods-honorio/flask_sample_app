@@ -1,0 +1,30 @@
+{% extends "template.html" %}
+{% block content %}
+    <form action="{{ url_for('create_sample_a') }}" method="post" enctype="multipart/form-data">
+        <figure class="thumb col-md-4">
+            <img class="img-responsive" src="{{ url_for('image', file_name='default_pic.jpg') }}">
+            <figcaption>
+                <label class="fileContainer">
+                    Change image
+                    <input type="file" name="image_a" accept=".jpg">
+                </label>
+            </figcaption>
+        </figure>
+        <fieldset>
+          <div class="form-group">
+            <label for="text_field_a">Text Field</label>
+            <input type="text" id="text_field_a" name="text_field_a" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="numeric_field_a">Numeric Field</label>
+            <input type="text" id="numeric_field_a" name="numeric_field_a" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="date_field_a">Date Field</label>
+            <input type="text" id="date_field_a" name="date_field_a" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary btn-save">Save</button>
+          <a class="btn btn-danger" href="{{ url_for('index') }}">Back</a>
+        </fieldset>
+    </form>
+{% endblock %}
