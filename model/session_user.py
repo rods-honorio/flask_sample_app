@@ -1,29 +1,16 @@
-class SessionUser:
-    def __init__(self, username, name, password):
-        self.__username = username
-        self.__name = name
-        self.__password = password
+from sqlalchemy import Column, String
+from config.database import Base
 
-    @property
-    def username(self):
-        return self.__username
+class SessionUser(Base):
+    __tablename__ = 'users'
+    username = Column(String, primary_key=True)
+    name = Column(String(50), unique=True)
+    password = Column(String(20), unique=True)
 
-    @username.setter
-    def username(self, username):
-        self.__username = username
+    def __init__(self, username=None, name=None, password=None):
+        self.username = username
+        self.name = name
+        self.password = password
 
-    @property
-    def name(self):
-        return self.__name
-
-    @name.setter
-    def name(self, name):
-        self.__name = name
-
-    @property
-    def password(self):
-        return self.__password
-
-    @password.setter
-    def password(self, password):
-        self.__password = password
+    def __repr__(self):
+        return '<SessionUser %r>' % (self.name)

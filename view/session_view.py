@@ -1,8 +1,8 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from dao.session_user_dao import SessionUserDao
-from sample import db, app
+from sample import app
 
-session_user_dao = SessionUserDao(db)
+session_user_dao = SessionUserDao()
 
 
 @app.route('/login')

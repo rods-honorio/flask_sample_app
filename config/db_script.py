@@ -2,9 +2,9 @@ import MySQLdb
 print('Conectando...')
 conn = MySQLdb.connect(user='root', passwd='M4n43lf0v41!', host='127.0.0.1', port=3306)
 
-# conn.cursor().execute("DROP DATABASE `sample`;")
-# conn.commit()
-# conn.cursor().close()
+conn.cursor().execute("DROP DATABASE `sample`;")
+conn.commit()
+conn.cursor().close()
 
 cursor = conn.cursor()
 
@@ -33,7 +33,7 @@ criar_tabela = '''
       `id_field_a` int(11) NOT NULL AUTO_INCREMENT,
       `text_field_a` varchar(50) COLLATE utf8_bin NOT NULL,
       `numeric_field_a` int(11) COLLATE utf8_bin NOT NULL,
-      `date_field_a` varchar(10) NOT NULL,
+      `date_field_a` date NOT NULL,
       PRIMARY KEY (`id_field_a`)
     ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4 COLLATE=utf8mb4_bin;
     '''
@@ -89,10 +89,10 @@ for user in cursor.fetchall():
 cursor.executemany(
       'INSERT INTO sample.sample_a (text_field_a, numeric_field_a, date_field_a) VALUES (%s, %s, %s)',
       [
-            ('Sample Value A 1', '1', '01/01/2001'),
-            ('Sample Value A 2', '2', '02/02/2002'),
-            ('Sample Value A 3', '3', '03/03/2003'),
-            ('Sample Value A 4', '4', '04/04/2004'),
+            ('Sample Value A 1', '1', '2001-01-01'),
+            ('Sample Value A 2', '2', '2002-02-02'),
+            ('Sample Value A 3', '3', '2003-03-03'),
+            ('Sample Value A 4', '4', '2004-04-04'),
       ])
 conn.commit()
 conn.cursor().close()
