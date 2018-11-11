@@ -1,10 +1,14 @@
 from flask import Flask
-from flask_mysqldb import MySQL
+from config.database import db_session, init_db
 
 app = Flask(__name__)
 app.config.from_pyfile('config/config.py')
 
-db = MySQL(app)
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db_session.remove()
+
+init_db()
 
 from view.app_view import *
 

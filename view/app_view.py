@@ -1,9 +1,9 @@
 from flask import render_template, send_from_directory
-from sample import db, app
+from sample import app
 from dao.sample_a_dao import SampleADao
 from view import sample_a_view
 
-sample_a_dao = SampleADao(db)
+sample_a_dao = SampleADao()
 
 
 @app.route('/')

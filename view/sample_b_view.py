@@ -1,10 +1,10 @@
 from flask import render_template, request, redirect, session, url_for, flash
 from model.sample_b import SampleB
 from dao.sample_b_dao import SampleBDao
-from sample import db, app
+from sample import app
 from view import session_view
 
-sample_b_dao = SampleBDao(db)
+sample_b_dao = SampleBDao()
 
 
 @app.route('/createSampleB', methods=['POST', ])

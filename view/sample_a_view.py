@@ -3,10 +3,10 @@ from model.sample_a import SampleA
 from dao.sample_a_dao import SampleADao
 import time
 from config.helpers import delete_file, recover_image, create_new_default_image
-from sample import db, app
+from sample import app
 from view import session_view
 
-sample_a_dao = SampleADao(db)
+sample_a_dao = SampleADao()
 
 
 @app.route('/createSampleA', methods=['POST', ])
@@ -16,7 +16,7 @@ def create_sample_a():
     date_field_a = request.form['date_field_a']
 
     sample_a = SampleA(text_field_a, numeric_field_a, date_field_a,)
-    sample_a_dao.save_sample_a(sample_a)
+    sample_a_dao.create_sample_a(sample_a)
 
     upload_path = app.config['UPLOAD_PATH']
     timestamp: float = time.time()
@@ -49,12 +49,14 @@ def refresh_sample_a():
     sample_a = SampleA(text_field_a, numeric_field_a, date_field_a,
                        id_field_a=request.form['id_field_a'])
 
-    arquivo = request.files['image_a']
-    upload_path = app.config['UPLOAD_PATH']
-    timestamp = time.time()
-    delete_file(sample_a.id_field_a)
-    arquivo.save(f'{upload_path}/pic{sample_a.id_field_a}-{timestamp}.jpg')
-    sample_a_dao.save_sample_a(sample_a)
+    if 'image_a' in request.files:
+        file = request.files['image_a']
+        upload_path = app.config['UPLOAD_PATH']
+        timestamp = time.time()
+        delete_file(sample_a.id_field_a)
+        file.save(f'{upload_path}/pic{sample_a.id_field_a}-{timestamp}.jpg')
+
+    sample_a_dao.update_sample_a(sample_a)
     return redirect(url_for('index'))
 
 
