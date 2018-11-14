@@ -1,11 +1,10 @@
-from sqlalchemy import Column, String
-from config.database import Base
+from dao import db
 
-class SessionUser(Base):
+class SessionUser(db.Model):
     __tablename__ = 'users'
-    username = Column(String, primary_key=True)
-    name = Column(String(50), unique=True)
-    password = Column(String(20), unique=True)
+    username = db.Column(db.String, primary_key=True)
+    name = db.Column(db.String(50), unique=True)
+    password = db.Column(db.String(20), unique=True)
 
     def __init__(self, username=None, name=None, password=None):
         self.username = username

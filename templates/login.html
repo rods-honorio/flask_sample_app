@@ -19,7 +19,7 @@
         {% endwith %}
 
         <h1>Sign in</h1>
-        <form method="POST" action="{{ url_for('authenticate') }}">
+        <form method="POST" action="{{ url_for('session.authenticate') }}">
             <input type="hidden" name="next" value="{{ next or url_for('index') }}">
             <p><label>Username:</label> <input class="form-control" type="text" name="username" required></p>
             <p><label>Password:</label> <input class="form-control" type="password" name="password" required></p>
