@@ -1,8 +1,8 @@
 {% extends "template.html" %}
 {% block content %}
-    <form action="{{ url_for('create_sample_a') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ url_for('sample_a.create_sample_a') }}" method="post" enctype="multipart/form-data">
         <figure class="thumb col-md-4">
-            <img class="img-responsive" src="{{ url_for('image', file_name='default_pic.jpg') }}">
+            <img class="img-responsive" src="{{ url_for('sample_app.image', file_name='default_pic.jpg') }}">
             <figcaption>
                 <label class="fileContainer">
                     Change image
@@ -24,7 +24,7 @@
             <input type="date" id="date_field_a" name="date_field_a" class="form-control">
           </div>
           <button type="submit" class="btn btn-primary btn-save">Save</button>
-          <a class="btn btn-danger" href="{{ url_for('index') }}">Back</a>
+          <a class="btn btn-danger" href="{{ url_for('sample_app.index') }}">Back</a>
         </fieldset>
     </form>
 {% endblock %}

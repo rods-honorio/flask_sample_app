@@ -1,4 +1,4 @@
-from model.session_user import SessionUser
+from model import SessionUser
 
 
 class SessionUserDao:

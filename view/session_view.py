@@ -1,17 +1,18 @@
-from flask import render_template, request, redirect, session, flash, url_for
-from dao.session_user_dao import SessionUserDao
-from sample import app
+from flask import render_template, request, redirect, session, flash, url_for, Blueprint
+from dao import SessionUserDao
 
 session_user_dao = SessionUserDao()
 
 
-@app.route('/login')
+session_bp = Blueprint('session', __name__)
+
+@session_bp.route('/login')
 def login():
     next = request.args.get('next')
     return render_template('login.html', next=next)
 
 
-@app.route('/authenticate', methods=['POST', ])
+@session_bp.route('/authenticate', methods=['POST', ])
 def authenticate():
     session_user = session_user_dao.search_by_id(request.form['username'])
     if session_user:
@@ -25,7 +26,7 @@ def authenticate():
         return redirect(url_for('login'))
 
 
-@app.route('/logout')
+@session_bp.route('/logout')
 def logout():
     session['logged_user'] = None
     flash('No user logged in!')
