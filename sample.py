@@ -11,9 +11,9 @@ def create_app(config_filename):
     from view.app_view import sample_app_bp
     from view.sample_a_view import sample_a_bp
     from view.session_view import session_bp
-    app.register_blueprint(sample_app_bp)
-    app.register_blueprint(sample_a_bp)
-    app.register_blueprint(session_bp)
+    app.register_blueprint(sample_app_bp, url_prefix='/flask')
+    app.register_blueprint(sample_a_bp, url_prefix='/flask')
+    app.register_blueprint(session_bp, url_prefix='/flask')
 
     return app
 
