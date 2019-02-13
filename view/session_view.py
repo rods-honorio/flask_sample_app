@@ -23,7 +23,7 @@ def authenticate():
             return redirect(next_page)
     else:
         flash('not logged in, try again!')
-        return redirect(url_for('login'))
+        return redirect(url_for('session.login'))
 
 
 @session_bp.route('/logout')

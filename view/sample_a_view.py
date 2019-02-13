@@ -35,7 +35,7 @@ def create_sample_a():
 @sample_a_bp.route('/editSampleA/<int:id_field_a>')
 def edit_sample_a(id_field_a):
     if 'logged_user' not in session or session['logged_user'] is None:
-        return redirect(url_for('login', next=url_for('edit_sample_a', id_field_a=id_field_a)))
+        return redirect(url_for('session.login', next=url_for('sample_a.edit_sample_a', id_field_a=id_field_a)))
     sample_a = sample_a_dao.search_by_id_sample_a(id_field_a)
     image_name = recover_image(id_field_a)
     return render_template('edit_sample_a.html', title='Editing Sample A', sample_a=sample_a
