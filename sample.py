@@ -3,7 +3,7 @@ from flask import Flask
 
 def create_app(config_filename):
     app = Flask(__name__)
-    app.config.from_pyfile(config_filename)
+    app.config.from_pyfile('config/config.py')
 
     from dao.database import db
     db.init_app(app)
@@ -16,6 +16,7 @@ def create_app(config_filename):
     app.register_blueprint(session_bp, url_prefix='/flask')
 
     return app
+
 
 if __name__ == '__main__':
     create_app('config/config.py').run(debug=True)

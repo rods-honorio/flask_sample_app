@@ -1,10 +1,11 @@
 import MySQLdb
 print('Conectando...')
-conn = MySQLdb.connect(user='root', passwd='M4n43lf0v41!', host='127.0.0.1', port=3306)
+conn = MySQLdb.connect(user='root', passwd='M4n43lf0v41!',
+                       host='127.0.0.1', port=3306)
 
-conn.cursor().execute("DROP DATABASE `sample`;")
-conn.commit()
-conn.cursor().close()
+# conn.cursor().execute("DROP DATABASE `sample`;")
+# conn.commit()
+# conn.cursor().close()
 
 cursor = conn.cursor()
 
@@ -15,7 +16,8 @@ conn.commit()
 conn.cursor().close()
 
 criar_esquema = '''
-    CREATE DATABASE `sample` /*!40100 DEFAULT CHARACTER SET UTF8MB4 COLLATE utf8mb4_bin */;
+    CREATE DATABASE `sample` /*!40100 DEFAULT CHARACTER SET UTF8MB4 \
+    COLLATE utf8mb4_bin */;
 '''
 
 conn.cursor().execute(criar_esquema)
@@ -48,7 +50,7 @@ criar_tabela = '''
       `id_field_a` int(11) COLLATE utf8_bin NOT NULL,
       `text_field_b` varchar(50) NOT NULL,
       PRIMARY KEY (`id_field_b`),
-      CONSTRAINT `fk_id_field_a` FOREIGN KEY (`id_field_a`) 
+      CONSTRAINT `fk_id_field_a` FOREIGN KEY (`id_field_a`)
       REFERENCES `sample_a` (`id_field_a`)
     ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4 COLLATE=utf8mb4_bin;
 '''
@@ -72,7 +74,8 @@ conn.cursor().close()
 
 # inserting users
 cursor.executemany(
-      'INSERT INTO sample.users (username, name, password) VALUES (%s, %s, %s)',
+      'INSERT INTO sample.users (username, name, password) \
+      VALUES (%s, %s, %s)',
       [
             ('rods', 'The Raccoon', 'flask'),
             ('noob', 'Nubinha', 'senha'),
@@ -87,7 +90,8 @@ for user in cursor.fetchall():
 
 # inserting sample a
 cursor.executemany(
-      'INSERT INTO sample.sample_a (text_field_a, numeric_field_a, date_field_a) VALUES (%s, %s, %s)',
+      'INSERT INTO sample.sample_a (text_field_a, numeric_field_a, \
+      date_field_a) VALUES (%s, %s, %s)',
       [
             ('Sample Value A 1', '1', '2001-01-01'),
             ('Sample Value A 2', '2', '2002-02-02'),

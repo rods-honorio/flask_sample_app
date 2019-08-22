@@ -29,6 +29,7 @@ class SampleADao:
 
 def create_sample_a_list(sample_a_list):
     def create_sample_a(sample_a_tuple):
-        return SampleA(sample_a_tuple[1], sample_a_tuple[2], sample_a_tuple[3], id_field_a=sample_a_tuple[0])
+        return SampleA(sample_a_tuple[1], sample_a_tuple[2], sample_a_tuple[3],
+                       id_field_a=sample_a_tuple[0])
 
     return list(map(create_sample_a, sample_a_list))
