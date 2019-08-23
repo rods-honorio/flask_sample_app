@@ -1,4 +1,5 @@
-from flask import render_template, request, redirect, session, flash, url_for, Blueprint, current_app
+from flask import (render_template, request, redirect, session,
+                   flash, url_for, Blueprint, current_app)
 from model import SampleA
 
 from dao.sample_a_dao import SampleADao
@@ -35,11 +36,14 @@ def create_sample_a():
 @sample_a_bp.route('/editSampleA/<int:id_field_a>')
 def edit_sample_a(id_field_a):
     if 'logged_user' not in session or session['logged_user'] is None:
-        return redirect(url_for('session.login', next=url_for('sample_a.edit_sample_a', id_field_a=id_field_a)))
+        return redirect(url_for('session.login',
+                                next=url_for('sample_a.edit_sample_a',
+                                             id_field_a=id_field_a)))
     sample_a = sample_a_dao.search_by_id_sample_a(id_field_a)
     image_name = recover_image(id_field_a)
-    return render_template('edit_sample_a.html', title='Editing Sample A', sample_a=sample_a
-                           , image_name=image_name or 'default_pic.jpg')
+    return render_template('edit_sample_a.html', title='Editing Sample A',
+                           sample_a=sample_a,
+                           image_name=image_name or 'default_pic.jpg')
 
 
 @sample_a_bp.route('/refreshSampleA', methods=['POST', ])

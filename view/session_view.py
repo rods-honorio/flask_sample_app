@@ -6,6 +6,7 @@ session_user_dao = SessionUserDao()
 
 session_bp = Blueprint('session', __name__)
 
+
 @session_bp.route('/login')
 def login():
     next = request.args.get('next')

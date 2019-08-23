@@ -5,6 +5,7 @@ sample_a_dao = SampleADao()
 
 sample_app_bp = Blueprint('sample_app', __name__)
 
+
 @sample_app_bp.route('/')
 def index():
     sample_list = sample_a_dao.list_sample_a()

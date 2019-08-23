@@ -1,5 +1,6 @@
 from dao import db
 
+
 class SampleA(db.Model):
     __tablename__ = 'sample_a'
     id_field_a = db.Column(db.Integer, primary_key=True)
@@ -14,6 +15,6 @@ class SampleA(db.Model):
         self.date_field_a = date_field_a
 
     def __repr__(self):
-        return '<SampleA %r>' % (self.id_field_a)
+        return '<SampleA %r>' % self.id_field_a
 
 
