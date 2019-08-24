@@ -9,8 +9,8 @@ session_bp = Blueprint('session', __name__)
 
 @session_bp.route('/login')
 def login():
-    next = request.args.get('next')
-    return render_template('login.html', next=next)
+    next_page = request.args.get('next')
+    return render_template('login.html', next=next_page)
 
 
 @session_bp.route('/authenticate', methods=['POST', ])
